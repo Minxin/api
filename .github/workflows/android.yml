@@ -29,6 +29,12 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: gradle
+    - name: Checkout libxposed/api
+      uses: actions/checkout@v4
+      with:
+        repository: libxposed/api
+        path: libxposed/api
+        ref: 54582730315ba4a3d7cfaf9baf9d23c419e07006
 
     - name: Build with Gradle
       run: |
@@ -48,12 +54,5 @@ jobs:
         path: ~/.m2/repository/
         include-hidden-files: true
         if-no-files-found: error
-    - name: Upload pages
-      uses: actions/upload-pages-artifact@v3
-      with:
-        # Upload entire repository
-        path: 'api/build/intermediates/java_doc_dir/release/javaDocReleaseGeneration'
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+   
 
